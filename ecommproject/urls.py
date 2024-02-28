@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ecommapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,4 +28,29 @@ urlpatterns = [
     path("registeruser/", views.registeruser, name="registeruser"),
     path("aboutus/", views.aboutus, name="aboutus"),
     path("contactus", views.contactus, name="contactus"),
-]
+    path("mobilelistview", views.mobilelistview, name="mobilelistview"),
+    path("clothslistview", views.clothslistview, name="clothslistview"),
+    path("shoeslistview", views.shoeslistview, name="shoeslistview"),
+    path("range_view", views.range_view, name="range_view"),
+    path("allsortedorderview", views.allsortedorderview, name="allsortedorderview"),
+    path("searchproduct", views.searchproduct, name="searchproduct"),
+    path("cart", views.cart, name="cart"),
+    path("addtocart/<product_id>", views.addtocart, name="addtocart"),
+    path("removecart/<product_id>", views.removecart, name="removecart"),
+    path("updateqty/<qv>/<product_id>", views.updateqty, name="updateqty"),
+    path("placeorder", views.placeorder, name="placeorder"),
+    path("payment", views.payment, name="payment"),
+    path("showorders", views.showorders, name="showorders"),
+    path("registerproduct", views.registerproduct, name="registerproduct"),
+    path("viewregisterproduct", views.viewregisterproduct, name="viewregisterproduct"),
+    path(
+        "deleteregisterproduct/<product_id>",
+        views.deleteregisterproduct,
+        name="deleteregisterproduct",
+    ),
+    path(
+        "updateproducts/<product_id>",
+        views.updateproducts,
+        name="updateproducts",
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
